@@ -1,24 +1,34 @@
 import React from 'react'
 import { Text, View ,SafeAreaView, StatusBar, StyleSheet} from 'react-native'
 import { Feather } from  '@expo/vector-icons'
+import RowText from '../components/RowText'
 
 const CurrentWeather = () =>{
+    const {wrapper,container,temp,feels, highLow,highLowWrapper,bodyWrapper,description,message} = styles
+
     return(
-        <SafeAreaView style={styles.wrapper}>
-            <View style={styles.container}>
+        <SafeAreaView style={wrapper}>
+            <View style={container}>
             <Feather name='sun' size={100} color='black'/>
-                <Text style={styles.temp}>6</Text>
-                <Text style={styles.feels}>Feels like 5</Text>
-                <View style={styles.highLowWrapper}>
-                    <Text style={styles.highLow}>High:8 </Text>
-                    <Text style={styles.highLow}>low:6 </Text>
-                </View>
+                <Text style={temp}>6</Text>
+                <Text style={feels}>Feels like 5</Text>
+
+                <RowText
+                    messageOne={'High: 8'}
+                    messageTwo={'Low: 6'}
+                    containerStyles={highLowWrapper}
+                    messageOneStyles={highLow}
+                    messageTwoStyles={highLow}
+                />
                 </View>
 
-                <View style={styles.bodyWrapper}>
-                    <Text style={styles.description}>Its sunny</Text> 
-                    <Text style={styles.message}>Its perfect t-shirt Weather</Text>
-                </View>
+                <RowText
+                    messageOne={"It's sunny"}
+                    messageTwo={"Its perfect t-shirt Weather"}
+                    containerStyles={bodyWrapper}
+                    messageOneStyles={description}
+                    messageTwoStyles={message}
+                />
         </SafeAreaView>
     )
 }
@@ -32,7 +42,7 @@ const styles = StyleSheet.create({
     },
     wrapper:{
         flex:1,
-        paddingTop: StatusBar.currentHeight || 0,
+        marginTop: StatusBar.currentHeight || 0,
         backgroundColor: 'pink',
     },
     temp:{
